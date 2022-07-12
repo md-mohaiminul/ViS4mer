@@ -72,49 +72,14 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         if self.split == 'train':
             idx = random.randint(0, len(self.videos)-1)
-        video_features = np.load(f'{DATA_ROOT}/vit_features_spatial/{self.videos[idx]}.npy')
 
-        if self.args.feature_type == 'vit_cls':
-            video_features = np.load(f'{DATA_ROOT}/vit_features_spatial/{self.videos[idx]}.npy')
-            x = np.zeros((self.args.l_secs, 1024))
-            for i in range (self.starts[idx], min(self.starts[idx] + self.args.l_secs, video_features.shape[0])):
-                x[i-self.starts[idx]] = video_features[i][0]
-
-        elif self.args.feature_type == 'vit_spatial':
+        if self.args.feature_type == 'vit_spatial':
             video_features = np.load(f'{DATA_ROOT}/vit_features_spatial/{self.videos[idx]}.npy')
             x = np.zeros((self.args.l_secs, 197, 1024))
             for i in range(self.starts[idx], min(self.starts[idx] + self.args.l_secs, video_features.shape[0])):
                 x[i - self.starts[idx]] = video_features[i]
             x = np.reshape(x,(x.shape[0]* x.shape[1], 1024))
 
-        elif self.args.feature_type == 'resnet152':
-            video_features = np.load(f'{DATA_ROOT}/resnet152_features_writer/{self.videos[idx]}.npy')
-            x = np.zeros((self.args.l_secs, 49, 4096))
-            for i in range(self.starts[idx], min(self.starts[idx] + self.args.l_secs, video_features.shape[0])):
-                x[i - self.starts[idx]] = video_features[i]
-            x = np.reshape(x,(x.shape[0]* x.shape[1], 4096))
-
-        elif self.args.feature_type == 'covnext':
-            video_features = np.load(f'{DATA_ROOT}/covnext_feature/{self.videos[idx]}.npy')
-            x = np.zeros((self.args.l_secs, 49, 2048))
-            for i in range(self.starts[idx], min(self.starts[idx] + self.args.l_secs, video_features.shape[0])):
-                x[i - self.starts[idx]] = video_features[i]
-            x = np.reshape(x,(x.shape[0]* x.shape[1], 2048))
+        #you can add support for other types of features smilarly
 
         return self.videos[idx], x, self.labels[idx]
-
-    # def __getitem__(self, idx):
-    #     if self.split == 'train':
-    #         idx = random.randint(0, len(self.videos)-1)
-    #     video_features = np.load(f'{DATA_ROOT}/vit_features_spatial/{self.videos[idx]}.npy')
-    #
-    #     video_features = video_features[self.starts[idx]:self.starts[idx] + self.args.l_secs]
-    #
-    #     if self.args.feature_type == 'cls':
-    #         x = np.zeros((self.args.l_secs, 1024))
-    #         for i in range (video_features.shape[0]):
-    #             x[i] = video_features[i][0]
-    #     else:
-    #         x = np.reshape(video_features,(video_features.shape[0]* video_features.shape[1], 1024))
-    #
-    #     return self.videos[idx], x, self.labels[idx]

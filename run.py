@@ -2,19 +2,12 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
-from torch import Tensor
 import random
-
-import torchvision
-import torchvision.transforms as transforms
-import math
 
 import os
 import argparse
 import numpy as np
 
-# from src.models.sequence.ss.standalone.s4 import S4
-from s4 import S4
 from tqdm.auto import tqdm
 from models import ViS4mer
 
@@ -48,16 +41,13 @@ parser.add_argument('--l_secs', default=60, type=int, help='l_secs')
 parser.add_argument('--n_layers', default=3, type=int, help='Number of layers')
 parser.add_argument('--d_model', default=1024, type=int, help='Model dimension')
 parser.add_argument('--dropout', default=0.2, type=float, help='Dropout')
-parser.add_argument('--prenorm', action='store_true', help='Prenorm')
 parser.add_argument('--d_input', default=1024, type=int, help='Input dimension')
 # General
 parser.add_argument('--resume', '-r', action='store_true', help='Resume from checkpoint')
 
-parser.add_argument('--feature_type', default='vit_spatial', choices=['vit_cls', 'vit_spatial', 'resnet152', 'covnext'], type=str, help='Feature type')
+parser.add_argument('--feature_type', default='vit_spatial', type=str, help='Feature type')
 parser.add_argument('--long_term_task', default='writer', type=str, help='long_term_task')
 parser.add_argument('--num_long_term_classes', default=10, type=int, help='num_long_term_classes')
-
-# CUDA_VISIBLE_DEVICES=1 python example.py --feature_type cls --l_secs 60
 
 def softmax(x):
     """Compute softmax values for each sets of scores in x."""
@@ -257,10 +247,10 @@ def eval(args, dataloader, model, epoch, criterion, split):
     else:
         return np.mean(mse)
 
-tasks = [('relationship', 4), ('way_speaking', 5), ('scene', 6), ('director', 10),
-         ('writer', 10), ('year', 9), ('like_ratio', -1), ('view_count', -1), ('genre', 4)]
+#tasks = [('relationship', 4), ('way_speaking', 5), ('scene', 6), ('director', 10),
+#         ('writer', 10), ('year', 9), ('like_ratio', -1), ('view_count', -1), ('genre', 4)]
 
-# tasks = [('writer', 10)]
+tasks = [('relationship', 4)]
 
 def main():
     args = parser.parse_args()
@@ -274,12 +264,8 @@ def main():
         else:
             args.d_output = 1
 
-        if args.feature_type == 'vit_cls':
-            args.l_max = args.l_secs
-        elif args.feature_type == 'vit_spatial':
+        if args.feature_type == 'vit_spatial':
             args.l_max = args.l_secs*197
-        else:
-            args.l_max = args.l_secs*49
 
         args.out_dir = f'outputs'
         if not os.path.exists(args.out_dir):
