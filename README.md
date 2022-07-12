@@ -13,7 +13,7 @@ If you find ViS4mer useful in your research, please use the following BibTeX ent
 }
 ```
 
-#Installation
+# Installation
 
 This repository requires Python 3.8+ and Pytorch 1.9+. 
 
@@ -30,7 +30,7 @@ python setup.py install
 ```
 - Install [Pykeops](https://www.kernel-operations.io/keops/index.html) by running `pip install pykeops==1.5 cmake`
 
-For more details of installation regarding S4 layer, please follow (this)[https://github.com/HazyResearch/state-spaces].
+For more details of installation regarding S4 layer, please follow [this](https://github.com/HazyResearch/state-spaces).
 
 # Demo
 You can use the model as follows:
