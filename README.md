@@ -12,3 +12,39 @@ If you find ViS4mer useful in your research, please use the following BibTeX ent
   year={2022}
 }
 ```
+
+#Installation
+
+This repository requires Python 3.8+ and Pytorch 1.9+. 
+
+- Create a conda virtual environment and activate it.
+```
+conda create --name py38 python=3.8
+conda activate py38
+```
+- Install the package listed in `requirements.txt`
+- The S4 layer requires "Cauchy Kernel" and we used the CUDA version. This can be installed by following commands.
+```
+cd extensions/cauchy
+python setup.py install
+```
+- Install [Pykeops](https://www.kernel-operations.io/keops/index.html) by running `pip install pykeops==1.5 cmake`
+
+For more details of installation regarding S4 layer, please follow (this)[https://github.com/HazyResearch/state-spaces].
+
+# Demo
+You can use the model as follows:
+
+```python
+import torch
+from models import ViS4mer
+
+model = ViS4mer(d_input=1024, l_max=2048, d_output=10, d_model=1024, n_layers=3)
+model.cuda()
+
+inputs = torch.randn(32, 2048, 1024).cuda() #[batch_size, seq_len, input_dim]
+outputs = model(inputs)  #[32, 10]
+```
+
+
+
