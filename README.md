@@ -46,5 +46,9 @@ inputs = torch.randn(32, 2048, 1024).cuda() #[batch_size, seq_len, input_dim]
 outputs = model(inputs)  #[32, 10]
 ```
 
+# Run on [LVU](https://arxiv.org/abs/2106.11310)dataset
+
+- Dataset splits are provided `data/lvu_1.0` repository. Otherwise you can also download [here](https://github.com/chaoyuaw/lvu).
+- You can download videos from youtube using [`youtube-dl`](https://pypi.org/project/youtube_dl/). `download_videos.py` provides code for downloading videos using `youtube_dl`. Alternatively, you can acquire the videos from [here](https://www.robots.ox.ac.uk/~vgg/research/condensed-movies/).
 
 
