@@ -51,19 +51,38 @@ outputs = model(inputs)  #[32, 10]
 - Dataset splits are provided `data/lvu_1.0`. Otherwise, you can also download [here](https://github.com/chaoyuaw/lvu).
 - You can download videos from youtube using [`youtube-dl`](https://pypi.org/project/youtube_dl/). `download_videos.py` provides code for downloading videos using `youtube_dl`. Alternatively, you can acquire the videos from [here](https://www.robots.ox.ac.uk/~vgg/research/condensed-movies/).
 - We used `ImageNet21k` pretrained ViT dense features from [`timm`](https://github.com/rwightman/pytorch-image-models/blob/master/timm/models/vision_transformer.py). Particularly, we used `vit_large_patch16_224_in21k` ViT model. Following provides code for extracting features for LVU dataset.
- ```extract_features/extract_features_lvu_vit.py```
+ ```
+ extract_features/extract_features_lvu_vit.py
+ ```
 - Finally, you can run the ViS4mer model on LVU tasks using `run_lvu.py`. Particularly, we used 4 GPUs and the following command.
- ```CUDA_VISIBLE_DEVICES=0,1,2,3 python run_lvu.py```
+ ```
+ CUDA_VISIBLE_DEVICES=0,1,2,3 python run_lvu.py
+ ```
  
  # Run on [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset
 
-- Download the [Breakfast]((https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset.
+- Download the [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset.
 - We used [`VideoSwin`](https://github.com/SwinTransformer/Video-Swin-Transformer) features for the Breakfast dataset. Particularly, we used `swin_base_patch244_window877_kinetics600_22k` prtrained model. Following files provide code for extracting features for the Breakfast dataset train and test split respectively.
 ```
 extract_features/extract_features_breakfast_swin_train.py
 extract_features/extract_features_breakfast_swin_test.py
 ```
 - Finally, you can run the ViS4mer model on Breakfast dataset using `run_breakfast.py`. Particularly, we used 4 GPUs and the following command.
- ```CUDA_VISIBLE_DEVICES=0,1,2,3 python run_breakfast.py```
+ ```python
+ CUDA_VISIBLE_DEVICES=0,1,2,3 python run_breakfast.py
+ ```
+ 
+  # Run on [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset
+
+- Download the [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset.
+- We used [`VideoSwin`](https://github.com/SwinTransformer/Video-Swin-Transformer) features for the Breakfast dataset. Particularly, we used `swin_base_patch244_window877_kinetics600_22k` prtrained model. Following files provide code for extracting features for the Breakfast dataset train and test split respectively.
+```
+extract_features/extract_features_breakfast_swin_train.py
+extract_features/extract_features_breakfast_swin_test.py
+```
+- Finally, you can run the ViS4mer model on Breakfast dataset using `run_breakfast.py`. Particularly, we used 4 GPUs and the following command.
+ ```python
+ CUDA_VISIBLE_DEVICES=0,1,2,3 python run_breakfast.py
+ ```
 
 
