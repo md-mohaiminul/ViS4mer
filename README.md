@@ -1,6 +1,6 @@
 # ViS4mer
 
-This is an official pytorch implementation of our ECCV 2022 paper [Long Movie Clip Classification with State-Space Video Models](https://arxiv.org/abs/2204.01692). In this repository, we provide PyTorch code for training and testing our proposed ViS4mer model. ViS4mer is an efficient video recognition model that achieves state-of-the-art results on several long-range video understanding bechmarks such as [LVU](https://arxiv.org/abs/2106.11310), [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/), and [Coin](https://coin-dataset.github.io).
+This is an official pytorch implementation of our ECCV 2022 paper [Long Movie Clip Classification with State-Space Video Models](https://arxiv.org/abs/2204.01692). In this repository, we provide PyTorch code for training and testing our proposed ViS4mer model. ViS4mer is an efficient video recognition model that achieves state-of-the-art results on several long-range video understanding bechmarks such as [LVU](https://arxiv.org/abs/2106.11310), [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/), and [COIN](https://coin-dataset.github.io).
 
 If you find ViS4mer useful in your research, please use the following BibTeX entry for citation.
 
@@ -72,22 +72,9 @@ extract_features/extract_features_breakfast_swin_test.py
  CUDA_VISIBLE_DEVICES=0,1,2,3 python run_breakfast.py
  ```
  
-  # Run on [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset
+ # Run on [COIN](https://coin-dataset.github.io) dataset
 
-- Download the [Breakfast](https://serre-lab.clps.brown.edu/resource/breakfast-actions-dataset/) dataset.
-- We used [`VideoSwin`](https://github.com/SwinTransformer/Video-Swin-Transformer) features for the Breakfast dataset. Particularly, we used `swin_base_patch244_window877_kinetics600_22k` prtrained model. Following files provide code for extracting features for the Breakfast dataset train and test split respectively.
-```
-extract_features/extract_features_breakfast_swin_train.py
-extract_features/extract_features_breakfast_swin_test.py
-```
-- Finally, you can run the ViS4mer model on Breakfast dataset using `run_breakfast.py`. Particularly, we used 4 GPUs and the following command.
- ```python
- CUDA_VISIBLE_DEVICES=0,1,2,3 python run_breakfast.py
- ```
- 
- # Run on [Coin](https://coin-dataset.github.io) dataset
-
-- Download the [Coin](https://coin-dataset.github.io) dataset.
+- Download the [COIN](https://coin-dataset.github.io) dataset.
 - We used [`VideoSwin`](https://github.com/SwinTransformer/Video-Swin-Transformer) features for the COIN dataset. Particularly, we used `swin_base_patch244_window877_kinetics600_22k` prtrained model. Following files provide code for extracting features for the COIN dataset train and test split respectively.
 ```
 extract_features/extract_features_coin_swin_train.py
