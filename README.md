@@ -84,5 +84,17 @@ extract_features/extract_features_breakfast_swin_test.py
  ```python
  CUDA_VISIBLE_DEVICES=0,1,2,3 python run_breakfast.py
  ```
+ 
+ # Run on [Coin](https://coin-dataset.github.io) dataset
+
+- Download the [Coin](https://coin-dataset.github.io) dataset.
+- We used [`VideoSwin`](https://github.com/SwinTransformer/Video-Swin-Transformer) features for the COIN dataset. Particularly, we used `swin_base_patch244_window877_kinetics600_22k` prtrained model. Following files provide code for extracting features for the COIN dataset train and test split respectively.
+```
+extract_features/extract_features_coin_swin_train.py
+extract_features/extract_features_coin_swin_test.py
+```
+- Finally, you can run the ViS4mer model on COIN dataset using `run_coin.py`. Particularly, we used 4 GPUs and the following command.
+ ```python
+ CUDA_VISIBLE_DEVICES=0,1,2,3 python run_coin.py
 
 
