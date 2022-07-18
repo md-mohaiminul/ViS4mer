@@ -55,7 +55,7 @@ outputs = model(inputs)  #[32, 10]
  extract_features/extract_features_lvu_vit.py
  ```
 - Finally, you can run the ViS4mer model on LVU tasks using `run_lvu.py`. Particularly, we used 4 GPUs and the following command.
- ```
+ ```python
  CUDA_VISIBLE_DEVICES=0,1,2,3 python run_lvu.py
  ```
  
@@ -83,5 +83,6 @@ extract_features/extract_features_coin_swin_test.py
 - Finally, you can run the ViS4mer model on COIN dataset using `run_coin.py`. Particularly, we used 4 GPUs and the following command.
  ```python
  CUDA_VISIBLE_DEVICES=0,1,2,3 python run_coin.py
+ ```
 
 
