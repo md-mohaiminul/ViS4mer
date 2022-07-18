@@ -1,0 +1,21 @@
+numpy
+scipy
+pandas
+sklearn
+sktime
+matplotlib
+tqdm
+rich
+pytorch-lightning
+hydra-core
+munch
+omegaconf
+wandb
+einops
+opt_einsum
+cmake
+torchtext
+datasets
+transformers
+pytorch-fast-transformers
+# pykeops==1.5 # Install to enable fast Cauchy kernel through pykeops

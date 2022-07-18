@@ -11,8 +11,8 @@ class ViS4mer(nn.Module):
             d_output,
             d_model,
             n_layers,
-            dropout,
-            prenorm,
+            dropout=0.2,
+            prenorm=True,
     ):
         super().__init__()
 
